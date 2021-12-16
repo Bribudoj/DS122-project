@@ -3,7 +3,7 @@ Projeto final de desenvolvimento web 1
 
 Para testar essa aplicação é necessário que em seu computador estejam instalados a versão mais recendo do PHP e um banco de dados, utilizei o MariaDB para desenvolvimento.
 
-Não irei entrar em detalhes sobre a instalçao dessas ferramentas, mas seguem links para apoio:
+Não irei entrar em detalhes sobre a instalação dessas ferramentas, mas seguem links para apoio:
 
 MariaDB: https://mariadb.org/
 PHP: https://www.php.net/downloads.php
