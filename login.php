@@ -1,6 +1,4 @@
 <?php
-require "db_functions.php";
-require "authenticate.php";
 include "header.php";
 
 $error = false;
@@ -25,8 +23,8 @@ if (!$login && $_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($user["user_password"] == $password) {
 
-          $_SESSION["user_id"] = $user["id"];
-          $_SESSION["user_name"] = $user["name"];
+          $_SESSION["user_id"] = $user["account_id"];
+          $_SESSION["user_name"] = $user["username"];
           $_SESSION["user_email"] = $user["email"];
           $_SESSION["signed_in"] = $login;
 

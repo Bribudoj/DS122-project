@@ -1,10 +1,11 @@
 <?php
 include "header.php";
 
+
 if($_SERVER['REQUEST_METHOD'] != 'POST'){
-    
-    echo '<form id="form-test" class="form-horizontal" method="POST" action="">
-            <div class="form-group">
+?>    
+    <form id="form-test" class="form-horizontal" method="POST" action="">
+        <div class="form-group">
                 <label for="threadTitle" class="col-sm-2 control-label">Título do Tópico</label>
                 <div class="col-sm-10">
                     <input required type="text" class="form-control" name="threadTitle" value="">
@@ -34,24 +35,58 @@ if($_SERVER['REQUEST_METHOD'] != 'POST'){
                     <button type="submit" class="btn btn-default">Enviar</button>
                 </div>
             </div>
-        </form>';
+        </form>
         
-}    
-else{
-    // Create connection
-    $conn = mysqli_connect($servername, $username, $password, $dbname);
-    // Check connection
-    if (!$conn) {
-        die("Connection failed: " . mysqli_connect_error());
-    }
 
-    $sql = "INSERT INTO MyGuests (firstname, lastname, email)
-    VALUES ('John', 'Doe', 'john@example.com')";
+<?php    
+}else{
 
-    if (mysqli_query($conn, $sql)) {
-        echo "New record created successfully";
-    } else {
-        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    $conn = connect_db();
+    $stmt = mysqli_stmt_init($conn);
+
+    /* open transaction*/
+    mysqli_begin_transaction($conn);
+
+    try {
+        mysqli_stmt_prepare($stmt, "INSERT INTO forum_thread (thread_subject, account_id, username)
+                                    VALUES (? , ? , ? )");
+        $thread_subject = $_POST["threadTitle"];
+        $account_id = $user_id;
+        $username = $user_name;
+
+        /* bind parameters for markers */
+        mysqli_stmt_bind_param($stmt, "sis", $thread_subject, $account_id, $username);
+
+        /* execute query */
+        mysqli_stmt_execute($stmt);
+
+        /* fetch value */
+        mysqli_stmt_fetch($stmt);
+
+        /* close statement */
+        mysqli_stmt_close($stmt);
+
+        $stmt = mysqli_stmt_init($conn);
+
+        mysqli_stmt_prepare($stmt, "INSERT INTO post (content, account_id, username, thread_id, first_post)
+                                VALUES (? , ? , ? , ? , TRUE )");
+        $content = $_POST["post"];
+        $account_id = $user_id;
+        $username = $user_name;
+        $thread_id = mysqli_insert_id($conn);
+
+        mysqli_stmt_bind_param($stmt, "sisi", $thread_subject, $account_id, $username, $thread_id);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_fetch($stmt);
+        mysqli_stmt_close($stmt);
+
+        /* commit transaction */
+        mysqli_commit($conn);
+
+    } catch (mysqli_sql_exception $exception) {
+        mysqli_rollback($conn);
+
+        throw $exception;
     }
 
     mysqli_close($conn);

@@ -1,5 +1,6 @@
 <?php
-require_once "credentials.php";
+require_once "db_credentials.php";
+require "db_functions.php";
 
 $conn = connect_db();
 
@@ -22,9 +23,12 @@ $sql = "CREATE TABLE IF NOT EXISTS forum_thread (
     thread_id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     thread_subject VARCHAR(30) NOT NULL,
     account_id INT(6) UNSIGNED NOT NULL,
+    username VARCHAR(30) NOT NULL,
     creation_date TIMESTAMP,
     CONSTRAINT FK_forum_thread FOREIGN KEY (`account_id`) 
-    REFERENCES `Users` (`account_id`)
+    REFERENCES `Users` (`account_id`),
+    CONSTRAINT FK__thread_username FOREIGN KEY (`username`) 
+    REFERENCES `Users` (`username`)
   )";
   
   if (mysqli_query($conn, $sql)) {
@@ -38,9 +42,13 @@ $sql = "CREATE TABLE IF NOT EXISTS forum_thread (
     content VARCHAR(1000) NOT NULL,
     account_id INT(6) UNSIGNED NOT NULL,
     thread_id INT(6) UNSIGNED NOT NULL,
+    username VARCHAR(30) NOT NULL,
+    first_post BOOLEAN NOT NULL,
     creation_date TIMESTAMP,
     CONSTRAINT FK_account_id FOREIGN KEY (`account_id`)
     REFERENCES `Users` (`account_id`),
+    CONSTRAINT FK_account_username FOREIGN KEY (`username`)
+    REFERENCES `Users` (`username`),
     CONSTRAINT FK_thread_id FOREIGN KEY (`thread_id`)
     REFERENCES `forum_thread` (`thread_id`)
     

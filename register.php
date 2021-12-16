@@ -1,5 +1,4 @@
 <?php
-require "db_functions.php";
 include "header.php";
 
 $error = false;

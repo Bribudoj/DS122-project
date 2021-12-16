@@ -1,5 +1,6 @@
 <?php
 require "authenticate.php";
+include "db_functions.php";
 ?>
 
 <!DOCTYPE html>
@@ -26,13 +27,12 @@ require "authenticate.php";
             <a href="login.php">Entrar</a>
             <a href="register.php">Cadastre-se</a>
             <?php }else{ ?>
-            <a href="logout.php">Sair</a>
+                Olá <?php echo $user_name?>, não é você?<a href="logout.php"> Sair</a>
             <?php } ?>
         </nav>
+        <div><a href="create_forum_thread.php">Crie um tópico!</a></div>
         <div class="left-sidebar">
         </div>
         <div class="right-sidebar">
         </div>
-        <div id="content">
-            
-        </div>
+        
