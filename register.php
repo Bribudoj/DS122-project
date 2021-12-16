@@ -60,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <?php if ($error): ?>
   <h3 style="color:red;"><?php echo $error_msg; ?></h3>
 <?php endif; ?>
-
+<?php if (!$success): ?>
 <form action="register.php" method="post">
   <label for="name">Nome de Usuário: </label>
   <input type="text" name="name" value="<?php echo $name; ?>" required><br>
@@ -88,6 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   <input type="submit" name="submit" value="Criar usuário">
 </form>
+<?php endif; ?>
 
 </p>
 
