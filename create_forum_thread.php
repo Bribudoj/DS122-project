@@ -1,7 +1,7 @@
 <?php
 include "header.php";
 
-
+if ($login == true) {
 if($_SERVER['REQUEST_METHOD'] != 'POST'){
 ?>    
     <form id="form-test" class="form-horizontal" method="POST" action="">
@@ -91,6 +91,14 @@ if($_SERVER['REQUEST_METHOD'] != 'POST'){
 
     mysqli_close($conn);
 }
+?>
+<?php } else { ?>
 
+<div>
+  Você precisa estar logado para adicionar um comentário!
+</div>
+
+<?php
+}
 include "footer.php";
 ?>

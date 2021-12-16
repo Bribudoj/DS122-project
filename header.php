@@ -30,7 +30,9 @@ include "db_functions.php";
                 Olá <?php echo $user_name?>, não é você?<a href="logout.php"> Sair</a>
             <?php } ?>
         </nav>
-        <div><a href="create_forum_thread.php">Crie um tópico!</a></div>
+        <?php if($login){ ?>
+            <div><a href="create_forum_thread.php">Crie um tópico!</a></div>
+        <?php } ?>
         <div class="left-sidebar">
         </div>
         <div class="right-sidebar">

@@ -43,13 +43,13 @@ if (!$threads_db) {
                     </tr>
                 <?php endWhile; ?>
             <?php else: ?>
-                Ainda não existe nenhum tópico.
+                Ainda não existe nenhuma Mensagem.
             <?php endIF; ?>
       </table>
 </div>
 
 
 <?php 
-include "create_post.php";
+include "create_discussion_comment.php";
 include "footer.php";
 ?>

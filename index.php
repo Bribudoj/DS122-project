@@ -20,7 +20,7 @@ mysqli_close($conn);
                 <?php while($thread = mysqli_fetch_assoc($threads_db)): ?>
                     <tr class="comment" id="comment_<?= $thread['thread_id'] ?>">
                         <td>De: <?= $thread['username'] ?> </td>
-                        <td><a href="posts.php?id=<?= $thread['thread_id'] ?>"><?= $thread['thread_subject'] ?></a></td>
+                        <td><a href="thread_discussion.php?id=<?= $thread['thread_id'] ?>"><?= $thread['thread_subject'] ?></a></td>
                         <td>Criado em: <?= $thread['creation_date'] ?></td>
                     </tr>
                 <?php endWhile; ?>

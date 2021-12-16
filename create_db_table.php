@@ -25,7 +25,7 @@ $sql = "CREATE TABLE IF NOT EXISTS forum_thread (
     account_id INT(6) UNSIGNED NOT NULL,
     username VARCHAR(30) NOT NULL,
     creation_date TIMESTAMP,
-    CONSTRAINT FK_forum_thread FOREIGN KEY (`account_id`) 
+    CONSTRAINT FK_forum_thread FOREIGN KEY (`account_id`)
     REFERENCES `Users` (`account_id`),
     CONSTRAINT FK__thread_username FOREIGN KEY (`username`) 
     REFERENCES `Users` (`username`)
@@ -41,8 +41,8 @@ $sql = "CREATE TABLE IF NOT EXISTS forum_thread (
     post_id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     content VARCHAR(1000) NOT NULL,
     account_id INT(6) UNSIGNED NOT NULL,
-    thread_id INT(6) UNSIGNED NOT NULL,
     username VARCHAR(30) NOT NULL,
+    thread_id INT(6) UNSIGNED NOT NULL,
     first_post BOOLEAN NOT NULL,
     creation_date TIMESTAMP,
     CONSTRAINT FK_account_id FOREIGN KEY (`account_id`)
