@@ -1,15 +1,10 @@
 <?php
 require_once "credentials.php";
 
-// Create connection
-$conn = mysqli_connect($servername, $username, $password, $dbname);
-// Check connection
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
+$conn = connect_db();
 
 // sql to create table
-$sql = "CREATE TABLE IF NOT EXISTS users (
+$sql = "CREATE TABLE IF NOT EXISTS Users (
   account_id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   username VARCHAR(30) NOT NULL UNIQUE,
   email VARCHAR(50) NOT NULL UNIQUE,
@@ -29,7 +24,7 @@ $sql = "CREATE TABLE IF NOT EXISTS forum_thread (
     account_id INT(6) UNSIGNED NOT NULL,
     creation_date TIMESTAMP,
     CONSTRAINT FK_forum_thread FOREIGN KEY (`account_id`) 
-    REFERENCES `users` (`account_id`)
+    REFERENCES `Users` (`account_id`)
   )";
   
   if (mysqli_query($conn, $sql)) {
@@ -45,7 +40,7 @@ $sql = "CREATE TABLE IF NOT EXISTS forum_thread (
     thread_id INT(6) UNSIGNED NOT NULL,
     creation_date TIMESTAMP,
     CONSTRAINT FK_account_id FOREIGN KEY (`account_id`)
-    REFERENCES `users` (`account_id`),
+    REFERENCES `Users` (`account_id`),
     CONSTRAINT FK_thread_id FOREIGN KEY (`thread_id`)
     REFERENCES `forum_thread` (`thread_id`)
     
@@ -57,5 +52,5 @@ $sql = "CREATE TABLE IF NOT EXISTS forum_thread (
       echo "Error creating table: " . mysqli_error($conn);
   }
 
-mysqli_close($conn);
+  disconnect_db($conn);
 ?>
