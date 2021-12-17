@@ -61,7 +61,7 @@ if($_SERVER['REQUEST_METHOD'] != 'POST'){
         $username = $user_name;
         $thread_id = mysqli_insert_id($conn);
 
-        mysqli_stmt_bind_param($stmt, "sisi", $thread_subject, $account_id, $username, $thread_id);
+        mysqli_stmt_bind_param($stmt, "sisi", $content, $account_id, $username, $thread_id);
         mysqli_stmt_execute($stmt);
         mysqli_stmt_fetch($stmt);
         mysqli_stmt_close($stmt);
