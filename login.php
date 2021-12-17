@@ -53,8 +53,6 @@ if (!$login && $_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-<h1>Login</h1>
-
 <?php if ($login): ?>
     <h3>Você já está logado!</h3>
   </body>
@@ -66,20 +64,21 @@ if (!$login && $_SERVER["REQUEST_METHOD"] == "POST") {
   <h3 style="color:red;"><?php echo $error_msg; ?></h3>
 <?php endif; ?>
 
-<form action="login.php" method="post">
-  <label for="email">Email: </label>
-  <input type="text" name="email" value="<?php echo $email; ?>" required><br>
+<div class="form-component">
+  <form action="login.php" method="post">
+    <div class="form-component-input">
+      <input class="input" type="text" name="email" placeholder="Email" value="<?php echo $email; ?>" required>
+    </div>
+    <div class="form-component-input">  
+      <input  class="input" type="password" name="password" placeholder="Senha" value="" required>
+    </div>
 
-  <label for="password">Senha: </label>
-  <input type="password" name="password" value="" required><br>
-
-  <input type="submit" name="submit" value="Entrar">
-</form>
-
-<ul>
-  <li><a href="index.php">Voltar</a></li>
-</ul>
-</p>
+    <div class="create-thread-btn">
+      <input class="button is-light is-link" type="submit" name="submit" value="Entrar">
+      <a class="button is-light is-danger" href="index.php">Voltar</a>
+    </div>
+  </form>
+</div>
 
 <?php
 include "footer.php";

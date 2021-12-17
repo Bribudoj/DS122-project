@@ -14,14 +14,14 @@ mysqli_close($conn);
 
 ?>
 
-    <div class="content">
+    <div class="content-page">
         <table>
             <?php if (mysqli_num_rows($threads_db) > 0): ?>
                 <?php while($thread = mysqli_fetch_assoc($threads_db)): ?>
-                    <tr class="comment" id="comment_<?= $thread['thread_id'] ?>">
-                        <td>De: <?= $thread['username'] ?> </td>
-                        <td><a href="thread_discussion.php?id=<?= $thread['thread_id'] ?>"><?= $thread['thread_subject'] ?></a></td>
-                        <td>Criado em: <?= $thread['creation_date'] ?></td>
+                    <tr class="threads" id="thread<?= $thread['thread_id'] ?>">
+                        <td class="button is-info is-light"><?= $thread['username'] ?> </td>
+                        <td class="button is-warning"><a href="thread_discussion.php?id=<?= $thread['thread_id'] ?>"><?= $thread['thread_subject'] ?></a></td>
+                        <td class="button is-primary is-light">em <?= $thread['creation_date'] ?></td>
                     </tr>
                 <?php endWhile; ?>
         <?php else: ?>

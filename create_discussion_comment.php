@@ -2,21 +2,14 @@
 if ($login == true) {
 ?>
   <form id="discussion-form" class="form-horizontal" method="POST" action="">
-    <div class="form-group">
-      <label for="text">Adicione um comentário</label>
+    <div>
       <div>
-        <textarea required class="form-control" name="comment" cols="2" rows="10" placeholder="Digite o seu primeiro post" value=""></textarea>
-        <div class="help-block" id="erro-senha">
-
-        </div>
-        <?php if (!empty($erro_senha)) : ?>
-          <span class="help-block"><?php echo $erro_senha ?></span>
-        <?php endif; ?>
+        <textarea required class="textarea" name="comment" placeholder="Adicione um comentário" value=""></textarea>
       </div>
     </div>
-    <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-10">
-        <button type="submit" class="btn btn-default">Enviar</button>
+    <div>
+      <div class="create-thread-btn">
+        <button type="submit" class="button is-link is-light ">Enviar</button>
       </div>
     </div>
     </div>
@@ -52,8 +45,10 @@ if ($login == true) {
 
 <?php } else { ?>
 
-  <div>
-    Você precisa estar logado para acessar essa área!
-  </div>
+  <article class="message is-danger">
+    <div class="message-body">
+      Você precisa estar logado para acessar essa área!
+    </div>
+  </article>
 
 <?php } ?>

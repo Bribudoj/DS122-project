@@ -1,0 +1,58 @@
+body{
+    font-family: 'Courier New', Courier, monospace;
+}
+.menu{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    border-bottom: 1px solid black;
+    margin-left: 20%;
+    margin-right: 20%;
+    min-height: 5em;
+}
+.menu--itens{
+    padding: 1em;
+}
+.menu-left{
+    position: absolute;
+    left: 12.5em;
+}
+.menu-right{
+    position: absolute;
+    right: 12.5em;
+}
+
+.post-date{
+    display: flex;
+    font-size: xx-small;
+    justify-content: space-between;
+}
+.create-thread-btn{
+    display: flex;
+    justify-content: flex-end;
+    padding: 1em;
+}
+.form-component{
+    margin-top: 2em;
+    padding: 1em;
+}
+.form-component-input{
+    padding: 0.5em;
+}
+.content-page{
+    min-height: 25em;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+.threads{
+    border-bottom: 1px solid black;
+}
+.threads td{
+    margin: 0.8em;
+    border-bottom: 1px solid black;
+}
+
+.footer{
+    max-height: 5em;
+}

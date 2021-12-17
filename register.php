@@ -48,46 +48,53 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-<h1>Dados para registro de novo usuário</h1>
+
 
 <?php if ($success): ?>
-  <h3 style="color:lightgreen;">Usuário criado com sucesso!</h3>
+  <article class="message is-success"><div class="message-body">Usuário criado com sucesso!</div></article>
   <p>
     Seguir para <a href="login.php">login</a>.
   </p>
 <?php endif; ?>
 
 <?php if ($error): ?>
-  <h3 style="color:red;"><?php echo $error_msg; ?></h3>
+  <article class="message is-danger"><div class="message-body"><?php echo $error_msg; ?></div></article>
 <?php endif; ?>
 <?php if (!$success): ?>
-<form action="register.php" method="post">
-  <label for="name">Nome de Usuário: </label>
-  <input type="text" name="name" value="<?php echo $name; ?>" required><br>
-  
-  <label for="email">Email: </label>
-  <input type="text" name="email" value="<?php echo $email; ?>" required><br>
 
-  <?php if ($error_mail): ?>
-  <h3 style="color:red;"><?php echo $error_msg; ?></h3>
-  <?php endif; ?>
+<div class="form-component">
+  <h1>Dados para registro de novo usuário</h1>
+  <form action="register.php" method="post">
 
-  <label for="password">Senha: </label>
-  <input type="password" name="password" value="" required><br>
-  
-  <?php if ($error_senha): ?>
-  <h3 style="color:red;"><?php echo $error_msg; ?></h3>
-  <?php endif; ?>
+    <div class="form-component-input">
+      <input class="input" type="text" name="name" placeholder="Nome de Usuário" value="<?php echo $name; ?>" required><br>
+    </div>
 
-  <label for="confirm_password">Confirmação da Senha: </label>
-  <input type="password" name="confirm_password" value="" required><br>
-  
-  <?php if ($error_senha): ?>
-  <h3 style="color:red;"><?php echo $error_msg; ?></h3>
-  <?php endif; ?>
+    <div class="form-component-input">
+      <input class="input" type="text" name="email" placeholder="Email:" value="<?php echo $email; ?>" required><br>
+    </div>
+    <?php if ($error_mail): ?>
+      <article class="message is-danger"><div class="message-body"><?php echo $error_msg; ?></div></article>
+    <?php endif; ?>
 
-  <input type="submit" name="submit" value="Criar usuário">
-</form>
+    <div class="form-component-input">
+      <input class="input" type="password" name="password" placeholder="Senha:" value="" required><br>
+    </div>
+    <?php if ($error_senha): ?>
+      <article class="message is-danger"><div class="message-body"><?php echo $error_msg; ?></div></article>
+    <?php endif; ?>
+
+    <div class="form-component-input">
+      <input class="input" type="password" name="confirm_password" placeholder="Confirmação da Senha:" value="" required><br>
+    </div>
+
+    <?php if ($error_senha): ?>
+      <article class="message is-danger"><div class="message-body"><?php echo $error_msg; ?></div></article>
+    <?php endif; ?>
+
+    <input class="button is-light is-link" type="submit" name="submit" value="Criar usuário">
+  </form>
+  </div>
 <?php endif; ?>
 
 </p>

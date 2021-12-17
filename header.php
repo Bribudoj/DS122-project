@@ -8,33 +8,36 @@ include "db_functions.php";
 
 <head>
     <meta charset="utf-8">
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
-
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
-    <title></title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Meu Fórum</title>
 </head>
 
 <body>
-    <div id="wrapper">
-        <nav class="menu">
-            <a href="index.php">Home</a>
-            <?php if(!$login){ ?>
-            <a href="login.php">Entrar</a>
-            <a href="register.php">Cadastre-se</a>
-            <?php }else{ ?>
-                Olá <?php echo $user_name?>, não é você?<a href="logout.php"> Sair</a>
-            <?php } ?>
-        </nav>
-        <?php if($login){ ?>
-            <div><a href="create_forum_thread.php">Crie um tópico!</a></div>
+
+    <nav class="menu">
+        <div class="menu--itens">
+            <table>
+                <tr>
+                    <td class="menu-left">
+                        <a class="tag is-link is-light" href="index.php">Home</a>
+                    </td>
+                    <td class="menu-right">
+                        <?php if (!$login) { ?>
+                    
+                            <a href="login.php">Entrar</a>
+                            <a href="register.php">Cadastre-se</a>                    
+                        <?php } else { ?>
+                            Olá <?php echo $user_name ?>, não é você?<a class="tag is-danger is-light" href="logout.php"> Sair</a>
+                        <?php } ?>
+                    </td>
+                </div>
+            </tr>
+            </table>
+        </div>
+    </nav>
+    <div class="wrapper">
+        <?php if ($login) { ?>
+            <div class="create-thread-btn"><a class="button is-link is-light" href="create_forum_thread.php">Crie um tópico!</a></div>
         <?php } ?>
-        <div class="left-sidebar">
-        </div>
-        <div class="right-sidebar">
-        </div>
-        
+       

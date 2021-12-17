@@ -32,21 +32,31 @@ if (!$threads_db) {
 
 ?>
 
-<div class="content">
-        <table>
+        <div class="main-content box">
             <?php if (mysqli_num_rows($result) > 0): ?>
                 <?php while($posts = mysqli_fetch_assoc($result)): ?>
-                    <tr class="forum_post" id="forum_post_<?= $posts['post_id'] ?>">
-                        <td>De: <?= $posts['username'] ?> </td>
-                        <td><?= $posts['content'] ?></td>
-                        <td><?= $posts['creation_date'] ?></td>
-                    </tr>
+                    <div class="card-content card" >                   
+                        <div class="forum_post" id="forum_post_<?= $posts['post_id'] ?>">
+                            <div class="content">
+                                <?= $posts['username'] ?>
+                                <div class="post-date">
+                                    <?= $posts['creation_date'] ?>
+                                </div>
+                            </div>
+                            <div class="content">
+                                <?= $posts['content'] ?>
+                            </div>
+                        </div>
+                    </div>
+                  
                 <?php endWhile; ?>
             <?php else: ?>
                 Ainda não existe nenhuma Mensagem.
             <?php endIF; ?>
-      </table>
-</div>
+        </div>  
+
+
+
 
 
 <?php 
